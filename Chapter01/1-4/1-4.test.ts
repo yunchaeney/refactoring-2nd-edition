@@ -1,7 +1,8 @@
 import { invoices, plays } from '../data';
 import { statement as statement01 } from './01';
-import { statement as statement02 } from './01';
-import { statement as statement03 } from './01';
+import { statement as statement02 } from './02';
+import { statement as statement03 } from './03';
+import { statement as statement04 } from './04';
 
 describe('statement 함수 테스트', () => {
   test('고객A 테스트.', () => {
@@ -15,6 +16,7 @@ describe('statement 함수 테스트', () => {
     expect(statement01(invoices[0], plays)).toBe(result);
     expect(statement02(invoices[0], plays)).toBe(result);
     expect(statement03(invoices[0], plays)).toBe(result);
+    expect(statement04(invoices[0], plays)).toBe(result);
   });
 
   test('고객B 테스트', () => {
@@ -28,6 +30,7 @@ describe('statement 함수 테스트', () => {
     expect(statement01(invoices[1], plays)).toBe(result);
     expect(statement02(invoices[1], plays)).toBe(result);
     expect(statement03(invoices[1], plays)).toBe(result);
+    expect(statement04(invoices[1], plays)).toBe(result);
   });
 
   test('고객C 테스트', () => {
@@ -41,5 +44,6 @@ describe('statement 함수 테스트', () => {
     expect(statement01(invoices[2], plays)).toBe(result);
     expect(statement02(invoices[2], plays)).toBe(result);
     expect(statement03(invoices[2], plays)).toBe(result);
+    expect(statement04(invoices[2], plays)).toBe(result);
   });
 });

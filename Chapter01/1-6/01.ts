@@ -1,6 +1,27 @@
 import { Invoice, Play, Performance } from '../types';
 
 export function statement(invoice: Invoice, plays: Record<string, Play>) {
+  const statementData = {}; // 중간 데이터 구조를 인수로 전달
+  return renderPlainText(statementData, invoice, plays);
+}
+
+export function renderPlainText(
+  data: any,
+  invoice: Invoice,
+  plays: Record<string, Play>,
+) {
+  let result = `청구 내역 (고객명 : ${invoice.customer})\n`;
+
+  for (let perf of invoice.performances) {
+    result += `${playFor(perf).name}: ${usd(amountFor(perf) / 100)} (${perf.audience}석)\n`;
+  }
+
+  result += `총액 : ${usd(totalAmount() / 100)}\n`;
+  result += `적립 포인트 : ${totalVolumeCredits()}점\n`;
+
+  return result;
+
+  // 중첩함수 시작
   function playFor(aPerformance: Performance) {
     return plays[aPerformance.playId];
   }
@@ -31,7 +52,7 @@ export function statement(invoice: Invoice, plays: Record<string, Play>) {
     return result;
   }
 
-  function volumnCreditsFor(aPerformance: Performance) {
+  function volumeCreditsFor(aPerformance: Performance) {
     let result = 0;
     result += Math.max(aPerformance.audience - 30, 0);
 
@@ -50,14 +71,10 @@ export function statement(invoice: Invoice, plays: Record<string, Play>) {
     }).format(aNumber);
   }
 
-  // 1. volumnCredits 누적 로직을 별도로 분리
-  // 2. 문장 슬라이드를 통해 volumnCredits 선언부를 사용하는 반복문 앞으로 옮기기
-  // 3. 해당하는 부분을 별도 함수로 추출
-  // 4. 변수 인라인하여 volumnCredits 변수를 없애기
-  function totalVolumnCredits() {
+  function totalVolumeCredits() {
     let result = 0;
     for (let perf of invoice.performances) {
-      result += volumnCreditsFor(perf);
+      result += volumeCreditsFor(perf);
     }
 
     return result;
@@ -71,16 +88,4 @@ export function statement(invoice: Invoice, plays: Record<string, Play>) {
 
     return result;
   }
-  // ***
-
-  let result = `청구 내역 (고객명 : ${invoice.customer})\n`;
-
-  for (let perf of invoice.performances) {
-    result += `${playFor(perf).name}: ${usd(amountFor(perf) / 100)} (${perf.audience}석)\n`;
-  }
-
-  result += `총액 : ${usd(totalAmount() / 100)}\n`;
-  result += `적립 포인트 : ${totalVolumnCredits()}점\n`;
-
-  return result;
 }
