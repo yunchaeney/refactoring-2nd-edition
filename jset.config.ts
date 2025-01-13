@@ -6,7 +6,12 @@ const config: Config = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   testMatch: ['/**/?(*.)(test).ts'],
   transform: {
-    '^.+\\.(ts)$': 'ts-jest',
+    '\\.[jt]sx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+      },
+    ],
   },
 };
 

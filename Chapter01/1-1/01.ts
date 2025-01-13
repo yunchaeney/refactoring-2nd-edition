@@ -1,7 +1,6 @@
 import { Invoice, Play } from '../types';
-import { invoices, plays } from '../data';
 
-function statement(invoice: Invoice, plays: Record<string, Play>) {
+export function statement(invoice: Invoice, plays: Record<string, Play>) {
   let totalAmount = 0;
   let volumnCredits = 0;
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`;
@@ -44,7 +43,7 @@ function statement(invoice: Invoice, plays: Record<string, Play>) {
     if ('comedy' === play.type) volumnCredits += Math.floor(perf.audience / 5);
 
     // 청구 내역 출력
-    result += ` ${play.name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
+    result += `${play.name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
     totalAmount += thisAmount;
   }
 
@@ -53,5 +52,3 @@ function statement(invoice: Invoice, plays: Record<string, Play>) {
 
   return result;
 }
-
-console.log(statement(invoices[0], plays));

@@ -8,7 +8,7 @@ export const plays: Record<string, Play> = {
 
 export const invoices: Invoice[] = [
   {
-    customer: 'BigCo',
+    customer: '고객A',
     performances: [
       {
         playId: 'hamlet',
@@ -21,6 +21,40 @@ export const invoices: Invoice[] = [
       {
         playId: 'othello',
         audience: 40,
+      },
+    ],
+  },
+  {
+    customer: '고객B',
+    performances: [
+      {
+        playId: 'hamlet',
+        audience: 60,
+      },
+      {
+        playId: 'as-like',
+        audience: 25,
+      },
+      {
+        playId: 'othello',
+        audience: 50,
+      },
+    ],
+  },
+  {
+    customer: '고객C',
+    performances: [
+      {
+        playId: 'hamlet',
+        audience: 45,
+      },
+      {
+        playId: 'as-like',
+        audience: 30,
+      },
+      {
+        playId: 'othello',
+        audience: 35,
       },
     ],
   },
