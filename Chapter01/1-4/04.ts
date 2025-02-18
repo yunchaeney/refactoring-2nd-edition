@@ -71,7 +71,6 @@ export function statement(invoice: Invoice, plays: Record<string, Play>) {
 
     return result;
   }
-  // ***
 
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`;
 
