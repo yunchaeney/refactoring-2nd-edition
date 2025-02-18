@@ -1,4 +1,5 @@
 import { Invoice, Order, printOwing } from './함수추출하기.ts';
+import { alerts1, alerts2, alerts3, alertsPlus } from './매개변수객체만들기.ts';
 
 describe('함수 추출하기', () => {
   const order1 = new Order(1);
@@ -81,3 +82,22 @@ describe('변수 캡슐화하기', () => {
     expect(defaultOwner.firstName).toEqual('레베카');
   });
 });
+
+describe('매개변수 객체 만들기', () => {
+  test('1', () => {
+    expect(alerts1).toEqual();
+  })
+
+  test('1', () => {
+    expect(alerts2).toEqual();
+  })
+
+  test('1', () => {
+    expect(alerts3).toEqual();
+  })
+
+  test('1', () => {
+    expect(alertsPlus).toEqual();
+  })
+
+})
